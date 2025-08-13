@@ -1,0 +1,325 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #d0e8f2;
+    background-image: radial-gradient(circle, #e6f7ff, #d0e8f2, #b3d9e6);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(213, 236, 250, 0);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(to bottom, #a3d0e8, #7fb3d5);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-image: linear-gradient(to bottom, #7fb3d5, #5a8db8);
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #7fb3d5 rgba(213, 236, 250, 0.7);
+}
+
+.card {
+    scrollbar-gutter: stable;
+}
+
+.hidden-card {
+    transform: rotateY(180deg);
+    opacity: 0;
+    padding: 25px;
+    overflow-y: auto;
+    max-height: 100%;
+    max-width: 400px;
+}
+
+/* Floating animation for gift */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.card-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 550px;
+    perspective: 1000px;
+    z-index: 1;
+}
+
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: all 0.8s ease;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    overflow-y: auto;
+    /* scrollbar-width: none; */
+}
+
+.initial-card {
+    cursor: pointer;
+    transform: rotateY(0deg);
+}
+
+.initial-card.flip {
+    transform: rotateY(-180deg);
+    pointer-events: none;
+}
+
+.hidden-card {
+    transform: rotateY(180deg);
+    opacity: 0;
+    padding: 25px;
+    overflow-y: auto;
+    max-height: 100%;
+    max-width: 600px;
+}
+
+.hidden-card.show {
+    transform: rotateY(0);
+    opacity: 1;
+}
+
+h1 {
+    color: #5a8db8;
+    margin-bottom: 15px;
+    font-size: 2.8rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    color: #7fb3d5;
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.gift-image {
+    width: 135px;
+    height: 135px;
+    margin-top: 20px;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+    transition: transform 0.3s ease;
+}
+
+.gift-image:hover {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.september-image {
+    width: 90%;
+    max-width: 280px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.5s ease;
+    border: 5px solid white;
+}
+
+.wishes {
+    margin-top: 25px;
+}
+
+.wishes h2 {
+    color: #5a8db8;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.wishes p {
+    color: #5d8aa8;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    padding: 0 10px;
+}
+
+/* Decorative elements */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px dashed #a3d0e8;
+    border-radius: 15px;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Maple leaves */
+.leaf {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-image: url('images/maple.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    filter: drop-shadow(0 3px 5px rgba(0,0,0,0.1));
+}
+
+/* Scrollbar for cards specifically */
+.card::-webkit-scrollbar {
+    width: 6px;
+}
+
+.card::-webkit-scrollbar-track {
+    margin: 8px 0;
+}
+
+.card::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(to bottom, #a3d0e8, #7fb3d5);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card::-webkit-scrollbar-thumb:hover {
+    background-image: linear-gradient(to bottom, #7fb3d5, #5a8db8);
+}
+
+/* Decorative scroll indicator */
+.hidden-card::after {
+    content: '✿';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #7fb3d5;
+    font-size: 14px;
+    animation: bounce 2s infinite;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Style for music note text */
+.music-note {
+    font-style: italic;
+    color: #7fb3d5 !important;
+    font-size: 0.9rem !important;
+    margin-top: 20px;
+    padding: 5px;
+    border-top: 1px dashed #a3d0e8;
+    border-bottom: 1px dashed #a3d0e8;
+}
+
+.hint {
+    margin-top: 15px;
+    color: #7fb3d5;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+@media (max-width: 500px) {
+    .card-container {
+        height: 80vh;
+        max-height: 600px;
+    }
+    
+    .card {
+        width: 90%;
+        height: 100%;
+        padding: 25px 20px;
+        margin: 0 auto;
+        overflow-y: auto;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .wishes p {
+        font-size: 1rem;
+    }
+}
+
+.falling-leaves {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes fallingLeaves {
+    0% {
+        transform: translateY(-10%) rotate(0deg);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
